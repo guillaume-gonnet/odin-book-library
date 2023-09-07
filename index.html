@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js" defer></script>
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="tb">
+        <table id="bookTable">
+            <thead>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read?</th>
+            </thead>
+            <tbody id="bookTableBody">
+
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        <button id="newBookBtn">NEW BOOK</button>
+    </p>
+
+    <dialog id="newBookDialog">
+        <form>
+            <p>
+                <label for="newBookTitle">Book Title</label><br>
+                <input type="text" id="newBookTitle" name="newBookTitle"><br>
+                <label for="newBookAuthor">Book Author</label><br>
+                <input type="text" id="newBookAuthor" name="newBookAuthor"><br>
+                <label for="newBookPages">Number of Pages</label><br>
+                <input type="number" id="newBookPages" name="newBookPages"><br>
+                <label for="newBookRead">Did you read this book?</label><br>
+                <input type="checkbox" id="newBookRead" name="newBookRead" value="yes"><br>
+            </p>
+            <div>
+                <button value="cancel" formmethod="dialog">Cancel</button>
+                <button id="newBookConfirmBtn" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+
+</body>
+
+</html>
