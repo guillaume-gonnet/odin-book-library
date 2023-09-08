@@ -12,3 +12,7 @@ table tbody tr {
     padding: 0.5rem;
     text-align: center;
 }
+
+.cancelBtn {
+    background-color: crimson;
+}

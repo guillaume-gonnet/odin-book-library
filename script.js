@@ -5,11 +5,15 @@ function Book(title, author, pages, read) {
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.id = null;
     this.info = function () { return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}` };
 }
 
 function addBookToLibrary(book) {
+    const id = myLibrary.length;
+    book.id = id;
     myLibrary.push(book);
+    console.log("book added to library:" + book.info());
     addBookToTable(book);
 }
 
@@ -39,7 +43,6 @@ newBookBtn.addEventListener('click', () => {
         e.stopImmediatePropagation();
         const newBook = new Book(newBookTitle.value, newBookAuthor.value, newBookPages.value, newBookRead.checked);
         addBookToLibrary(newBook);
-        console.log("book added to library:" + myLibrary.slice(-1).info);
         newBookDialog.close();
     });
 });
@@ -54,6 +57,24 @@ function addBookToTable(book) {
         td.innerText = book[bookInfo[i]];
         tr.appendChild(td);
     }
+
+    const btn = document.createElement("button");
+    btn.innerText = "X";
+    btn.setAttribute("class", "cancelBtn");
+    btn.setAttribute('data-index-number', book.id);
+    btn.addEventListener('click', (e) => {
+        deleteBook(parseInt(btn.dataset.indexNumber));
+    });
+
+    tr.appendChild(btn);
+    tr.setAttribute('id', "book" + book.id);
+
     tableBody.appendChild(tr);
 }
 
+function deleteBook(bookId) {
+    bookRow = document.getElementById('book' + bookId);
+    bookRow.parentNode.removeChild(bookRow);
+    let indexBook = myLibrary.findIndex(book => book.id === bookId);
+    myLibrary.splice(indexBook, 1);
+}
