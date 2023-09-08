@@ -6,7 +6,8 @@ function Book(title, author, pages, read) {
     this.pages = pages;
     this.read = read;
     this.id = null;
-    this.info = function () { return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}` };
+    this.info = function () { return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}` }
+    this.toggleRead = function () { this.read = !this.read }
 }
 
 function addBookToLibrary(book) {
@@ -52,21 +53,38 @@ function addBookToTable(book) {
     const tableBody = document.getElementById("bookTableBody");
     const tr = document.createElement("tr");
 
-    for (let i = 0; i < bookInfo.length; i++) {
+    for (let i = 0; i < bookInfo.length - 1; i++) {
         const td = document.createElement("td");
         td.innerText = book[bookInfo[i]];
         tr.appendChild(td);
     }
 
-    const btn = document.createElement("button");
-    btn.innerText = "X";
-    btn.setAttribute("class", "cancelBtn");
-    btn.setAttribute('data-index-number', book.id);
-    btn.addEventListener('click', (e) => {
-        deleteBook(parseInt(btn.dataset.indexNumber));
+    //create button read
+    const btnRead = document.createElement('button');
+    btnRead.innerText = book.read ? "Read" : "Not Read";
+    btnRead.setAttribute("class", book.read ? "read" : "not-read");
+    btnRead.setAttribute('data-index-number', book.id);
+    btnRead.addEventListener('click', (e) => {
+        book.read ? btnRead.classList.replace("read", "not-read") : btnRead.classList.replace("not-read", "read");
+        btnRead.innerText = book.read ? "Not Read" : "Read";
+        book.toggleRead();
+    });
+    const tdBtnRead = document.createElement("td");
+    tdBtnRead.appendChild(btnRead);
+    tr.appendChild(tdBtnRead);
+
+
+    //create button delete
+    const btnDelete = document.createElement("button");
+    btnDelete.innerText = "X";
+    btnDelete.setAttribute("class", "cancelBtn");
+    btnDelete.setAttribute('data-index-number', book.id);
+    btnDelete.addEventListener('click', (e) => {
+        deleteBook(parseInt(btnDelete.dataset.indexNumber));
     });
 
-    tr.appendChild(btn);
+    tr.appendChild(btnDelete);
+
     tr.setAttribute('id', "book" + book.id);
 
     tableBody.appendChild(tr);

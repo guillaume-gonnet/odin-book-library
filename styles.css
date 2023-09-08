@@ -16,3 +16,12 @@ table tbody tr {
 .cancelBtn {
     background-color: crimson;
 }
+
+.read {
+    background-color: green;
+}
+
+.not-read {
+    background-color: red;
+    color: white;
+}
