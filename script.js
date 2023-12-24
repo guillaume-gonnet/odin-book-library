@@ -18,9 +18,9 @@ function addBookToLibrary(book) {
     addBookToTable(book);
 }
 
-const book1 = new Book("title1", "author1", "1", "true");
-const book2 = new Book("title2", "author2", "2", "true");
-const book3 = new Book("title3", "author3", "3", "false");
+const book1 = new Book("title1", "author1", "1", true);
+const book2 = new Book("title2", "author2", "2", true);
+const book3 = new Book("title3", "author3", "3", false);
 
 
 //Sample data
